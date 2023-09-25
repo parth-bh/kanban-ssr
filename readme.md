@@ -69,7 +69,7 @@ Step 2: Run the applcation by using the command.
 ```
 python3 app.py
 ```
-If you have a different Python version, adjust the command accordingly. Makesure you are in correct directory.
+If you have a different Python version, adjust the command accordingly. Make sure you are in the correct directory.
 
 This application uses SSR (Server Side Rendering), so you only need to run the server. When a client or user makes a request, the server dynamically renders the HTML page using Jinja2 and sends the response to the client. The server renders a response every time there is a request from a client.
 
