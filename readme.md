@@ -26,7 +26,6 @@ A Kanban board that can efficiently manage tasks and provide a clear visualizati
 
 **Technologies Used:**
 
-
 <u>Languages Used:</u>
 1. Python
 2. Javascript
@@ -39,8 +38,7 @@ A Kanban board that can efficiently manage tasks and provide a clear visualizati
 2. Flask Login: used simple security to check the user is logged or not, while using the app.
 3. Jinja2: Used to render dynamic data within HTML templates in Python web applications.
 4. Pandas/Numpy: Utilized for data manipulation on the backend (server).
-5. Matplotlib/Seaborn: Used for plotting the Graphs. This is used in the summary page of the application.
-
+5. Matplotlib/Seaborn: Used for plotting the graphs. This is used on the summary page of the application, which is also rendered on the server side and embedded in the HTML before being sent as a response to the client.
 
 <u>Database Technologies:</u>
 
@@ -71,7 +69,7 @@ Step 2: Run the applcation by using the command.
 ```
 python3 app.py
 ```
-If you have a different Python version, adjust the command accordingly.
+If you have a different Python version, adjust the command accordingly. Makesure you are in correct directory.
 
 This application uses SSR (Server Side Rendering), so you only need to run the server. When a client or user makes a request, the server dynamically renders the HTML page using Jinja2 and sends the response to the client. The server renders a response every time there is a request from a client.
 
