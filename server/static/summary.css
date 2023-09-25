@@ -1,0 +1,79 @@
+body {
+	background-color: white;	
+	padding: 10px;
+	padding-bottom: 800px;
+}
+
+.heading{
+	border: inset;
+	background-color: lightgrey;
+}
+
+#user-heading{
+	padding: 10px;
+	}
+
+
+#list_summary{
+	text-align: center;
+	float: none;
+	color: purple;
+}
+
+.user_page_button {
+	float: right;
+	padding: 10px;
+	margin: 2%;
+	background-color: lightgrey;
+	font-size: 20px;
+	cursor: pointer;
+	border-radius: 10%;
+}
+
+
+.user_page_button:hover{
+	background-color: darkgray;
+	color: goldenrod;
+}
+
+
+.logout_button {
+	float: right;
+	padding: 10px;
+	margin: 2%;
+	background-color: lightgrey;
+	font-size: 20px;
+	cursor: pointer;
+	border-radius: 10%;
+}
+
+
+.logout_button:hover{
+	background-color: darkgray;
+	color: goldenrod;
+}
+
+
+.overall_list_details {
+}
+
+.overall_data_summary{
+	text-align: center;	
+	padding-bottom: 50px;
+}
+
+
+
+.list_wise_summary{
+	text-align: center;
+
+	border-top: 2px solid;
+	border-bottom: 2px solid;
+	border-color: lightgrey;
+	padding-bottom: 40px;
+}
+
+.empty_list_summary{
+	line-height: 1.5;
+	text-align: center;
+}

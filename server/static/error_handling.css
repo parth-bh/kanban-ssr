@@ -1,0 +1,22 @@
+.error {
+    font-size: 20px;
+    margin: 50px;
+    position:  fixed;
+    line-height: !important;
+    border: 5px;
+    border-style: inset;
+    border-color: darkgray;
+    color: red;
+    padding: 50px;
+}
+
+.button {
+    color: darkred;
+    cursor: pointer;
+}
+
+.button:hover{
+    background-color: lightblue;
+    color: darkred;
+}
+

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>User</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='user_logged_in.css') }}"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+
+<header>
+
+	<nav>
+		<ul>
+			<li><a href="/{{user}}/settings">Profile/Settings</a></li>
+			<li><a href="/{{user}}/summary">Summary</a></li>
+			<li><a href="{{url_for('logout')}}">LogOut</a></li>
+		</ul>
+	</nav>
+	
+	<div class="header-content">
+		<h1>Welcome {{user}}</h1>
+	</div>
+
+</header>
+
+<main>
+
+		<div class="column list">
+			<div class="selecting-list">
+				<h1>LIST</h1>
+				<form action="/{{user}}" method="post">
+
+			    {%for list_name in user_list %}
+		  
+					<li><button class="selected-list-button" name="selected_list" type="submit" value='{{list_name}}'>{{list_name}}</button></li>
+
+					{%endfor%}
+				</form>
+					
+					<button class="add-list-button" onclick="openForm()">Add List</button>
+			</div>
+
+
+<!-- ----------------------this is the form used when user adding the list -->
+
+
+			<div class="form-popup-add-list" id="myForm">
+				<form action="/{{user}}/add_list" class="form-add-list" method="post">
+					<h1>Add List</h1>
+					<h2>List Name:<h2>
+					<input type="add_list" placeholder="list name" name="add_list" required>
+					<br><br>
+					<button type="submit" class="button">Save</button>
+					<button type="button" class="button" onclick="closeForm()">Cancel</button>
+				</form>
+			</div>
+
+		</div>
+
+		<div class="column cards">
+			
+			{% if selected_list %}
+				
+
+<!-- ----------------------this is the form used when we delete the list name -->
+				
+				<div class="delete-edit-list-column">
+
+					<button class="button delete-button" onclick="openDeleteListForm()">Delete list: "{{selected_list}}" </button>
+
+					<div class="form-popup-delete-list" id="form-popup-delete-list">
+						<form action="/{{user}}/delete_list" class="form-delete-list" method="post">
+							<h2>Deleting "{{selected_list}}"</h2>
+							Are you sure you want to delete this list? <br><br>
+							<button type="button" class="button" onclick="closeDeleteListForm()">Cancel</button>
+							<button type="submit" class="button" name="deleting_list" value="{{selected_list}}">Delete</button>
+						</form>
+					</div>
+			
+					
+<!-- this is the form used, when user edit the list name -->
+
+					<button class="button edit-button" onclick="openEditListForm()">Edit List: "{{selected_list}}" </button>
+
+					<div class="form-popup-edit-list" id="form-popup-edit-list">
+						<form action="/{{user}}/edit_list" class="form-edit-list" method="post">
+							<h2>Edit List "{{selected_list}}"</h2>
+							New List Name:<br>
+							<input type="hidden" id="using-selected_list" name="selected_list" value="{{selected_list}}">	
+							<input type="edit_list" name="edit_list" value="{{selected_list}}" required>
+							<br>
+							<button type="submit" class="button">Modify</button>
+							<button type="button" class="button" onclick="closeEditListForm()">Cancel</button>
+						</form>
+					</div>
+
+				</div>   
+<!-- end of this delete-edit-list-column class, here we can delete or edit the list -->
+
+
+
+
+\				<!-- Now each card details will be here, by selected the list_name we can itreate over the particular list_name data -->
+
+				<h2>List: "{{selected_list}}"</h2> 
+				
+				<div class="all-card-details">
+
+
+<!-- when user add the new card details for the particular selected list -->
+					<div class="add-card-class">
+						<form action="/{{user}}/add_card" class="add-card-form" method="post">
+							<input type="hidden" name="list_name" value="{{selected_list}}">
+							<input type="hidden" name="user_name" value="{{user}}">
+							<button type="submit" class="add-card-button" name="add_card" value="{{selected_list}}"> New Task ....</button>
+						</form>
+					</div>
+
+
+
+
+<!--    ----------------------------------------------------PROGRESS CARD DETAILS         -->			
+
+					{%for index, row in progress_df.iterrows() %}
+				
+						<div class="progress-card-details">
+							<li>
+	
+								Title: {{row['title']}} <br>
+								Content: {{row['content']}} <br>
+								Deadline: {{row['deadline']}} <br>
+								Completion Status: {{row['completion_status']}} <br>
+
+
+<!-- when user delete the card details for the particular selected list -->
+								<div class="delete-card">
+									<form action="/{{user}}/delete_card" class="form-delete-card" method="post">
+										<input type="hidden" name="title" value="{{row['title']}}">
+										<input type="hidden" name="list_name" value="{{row['list_name']}}">
+										<input type="hidden" name="user_name" value="{{row['user_name']}}">
+										<input type="hidden" name="id" value="{{row['id']}}">
+										<button class="delete-card-button" name="delete_card" value="selected_list">
+											<i class="fa fa-trash-o" style="font-size:24px;color:red"></i>
+										</button>
+									</form>
+								</div>
+
+
+<!-- when user edit the card details for the particular selected list -->
+								<form action="/{{user}}/edit_card" class="form-edit-card" method="post">
+									<input type="hidden" name="id" value="{{row['id']}}">
+									<input type="hidden" name="list_name" value="{{row['list_name']}}">
+
+									<button type="submit" class="edit-card-button" name="edit_card" value="edit"> <i class="fa fa-edit" style="font-size:24px;color:blue"></i> </button>
+								</form>
+			
+							</li>
+						</div>  <!-- progress card details end here -->
+					{% endfor %}
+
+
+
+<!--  -----------------------------------------------------NOT-COMPLETED CARD DETAILs        -->				
+					
+					{% if not_completed_df | length  %}
+
+					<div id="cards-status">
+						<h3>{{n_not_completed}}/{{n_data}} NOT-COMPLETED</h3>
+					</div>
+
+					{%for index, row in not_completed_df.iterrows() %}
+						<div class="not-completed-card-details">	
+							<li>
+	
+								Title: {{row['title']}} <br>
+								Content: {{row['content']}} <br>
+								Deadline: {{row['deadline']}} <br>
+								Completion Status: {{row['completion_status']}} <br>
+
+
+<!-- when user delete the card details for the particular selected list -->
+								<div class="delete-card">
+									<form action="/{{user}}/delete_card" class="form-delete-card" method="post">
+										<input type="hidden" name="title" value="{{row['title']}}">
+										<input type="hidden" name="list_name" value="{{row['list_name']}}">
+										<input type="hidden" name="user_name" value="{{row['user_name']}}">
+										<input type="hidden" name="id" value="{{row['id']}}">
+										<button class="delete-card-button" name="delete_card" value="selected_list">
+											<i class="fa fa-trash-o" style="font-size:24px;color:red"></i>
+										</button>
+									</form>
+								</div>
+
+
+<!-- when user edit the card details for the particular selected list -->
+								<form action="/{{user}}/edit_card" class="form-edit-card" method="post">
+									<input type="hidden" name="id" value="{{row['id']}}">
+									<input type="hidden" name="list_name" value="{{row['list_name']}}">
+			
+									<button type="submit" class="edit-card-button" name="edit_card" value="edit"> <i class="fa fa-edit" style="font-size:24px;color:blue"></i> </button>
+								</form>
+			
+							</li>
+						</div>  
+					{% endfor %}
+
+				{% endif %}  <!-- not completed card details end here -->
+
+
+<!--   ---------------------------------------------------------COMPLETED CARD DETAILS         -->				
+					
+					{% if completed_df | length  %}
+
+						<div id="cards-status">
+							<h3>{{n_completed}}/{{n_data}} COMPLETED</h3>
+						</div>
+						{%for index, row in completed_df.iterrows() %}
+							<div class="completed-card-details">
+								<li>
+		
+									Title: {{row['title']}} <br>
+									Content: {{row['content']}} <br>
+									Deadline: {{row['deadline']}} <br>
+									Completion Status: {{row['completion_status']}} <br>
+
+
+	<!-- when user delete the card details for the particular selected list -->
+									<div class="delete-card">
+										<form action="/{{user}}/delete_card" class="form-delete-card" method="post">
+											<input type="hidden" name="title" value="{{row['title']}}">
+											<input type="hidden" name="list_name" value="{{row['list_name']}}">
+											<input type="hidden" name="user_name" value="{{row['user_name']}}">
+											<input type="hidden" name="id" value="{{row['id']}}">
+											<button class="delete-card-button" name="delete_card" value="selected_list">
+												<i class="fa fa-trash-o" style="font-size:24px;color:red"></i>
+											</button>
+										</form>
+									</div>
+
+
+	<!-- when user edit the card details for the particular selected list -->
+									<form action="/{{user}}/edit_card" class="form-edit-card" method="post">
+										<input type="hidden" name="id" value="{{row['id']}}">
+										<input type="hidden" name="list_name" value="{{row['list_name']}}">
+		
+										<button type="submit" class="edit-card-button" name="edit_card" value="edit"> <i class="fa fa-edit" style="font-size:24px;color:blue"></i> </button>
+									</form>
+				
+								</li>
+							</div>  
+						{% endfor %}
+
+					{% endif %}  <!------- completed card details end here -->
+
+
+				</div>
+			{% endif %}
+		</div>
+
+</main>
+
+<script>
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+function openDeleteListForm() {
+  document.getElementById("form-popup-delete-list").style.display = "block";
+}
+function openEditListForm() {
+  document.getElementById("form-popup-edit-list").style.display = "block";
+}
+function openDeleteCardForm() {
+  document.getElementById("form-popup-delete-card").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}
+function closeDeleteListForm() {
+  document.getElementById("form-popup-delete-list").style.display = "none";
+}
+function closeEditListForm() {
+  document.getElementById("form-popup-edit-list").style.display = "none";
+}
+function closeDeleteCardForm() {
+  document.getElementById("form-popup-delete-card").style.display = "none";
+}
+
+</script>
+
+</body>
+</html>

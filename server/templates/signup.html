@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>SignUp</title>
+	<script src="../static/js/login_signup.js"></script>	
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='signup.css') }}"/>
+</head>
+
+<body>
+
+<header>
+    <div class="signup-heading">
+        <h1>Kanban : Task Management App</h1>
+    </div>
+    <br>
+</header>
+
+<main>
+
+	<h1>Sign Up / Register</h1>
+
+    <div class="error" style="font-size: 13px;">
+        {% if error %}
+        <span>&#10060;</span> {{error}}
+        <br>
+        <br>
+        {% endif %}
+    </div>
+
+	<form action="{{ url_for('signup') }}" method="post">
+
+		Email: <br>
+		<input type="email" id="email" name="email" placeholder="email" required> <br><br>
+
+		User Name: <br>
+		<input type="text" id="user_name" name="user_name" placeholder="user name" title="user name should be alphanumeric between 4 and 14 characters" minlength="4" maxlength="14" pattern="[A-Za-z0-9]+" required><br><br>
+
+		Password: <br>
+		<input type="password" id="password" name="password" placeholder="password" title="password should be alphanumeric between 4 and 14 characters" minlength="4" maxlength="14" pattern="[A-Za-z0-9]+" required>
+
+		<p style="font-size: 13px;"><input type="checkbox" onclick="show_password()">Show Password </p>
+
+        <button type="submit" class="button register-button">Register</button>
+
+	</form>
+
+	<br>
+	<p id="break-line">-----------------------or-----------------------</p>
+
+    <div class="message">
+        {% if message %}
+			{{message}}
+        {% endif %}
+    </div>
+	
+	<button type="submit" class="button login-button"><a href="{{ url_for('home') }}">Already Registered User / Login</button>
+
+</main>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+body {
+	background-color: lightgrey;
+}
+.user-details {
+	padding-left: 10px;
+}
+.new-card-details-form {
+	line-height: 250%;
+	border:inset;
+	width:50%;
+	padding : 30px;
+	border-color: lightblue;
+	margin-left: 25%;
+	margin-top: %;
+	background-color:white;
+	text-align: left;
+	font-size: 20px;
+	
+}
+
+#box-list_name, #box-deadline {
+	background-color: lightgrey;
+	width: 80%;
+	font-size: 18px;
+}
+
+#box-title, #box-content, #box-complete {
+	width: 80%;
+	font-size: 17px;
+}
+
+#mark-complete-status {
+	width: 5%;
+}
+
+
+.save-button, .cancel-button{
+	background-color: red;
+	padding: 10px;
+	cursor: pointer;
+}
+.save-button{
+	background-color: blue;
+}
+.save-button:hover, .cancel-button:hover{
+	background-color: white;
+}

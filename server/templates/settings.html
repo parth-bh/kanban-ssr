@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Settings</title>
+</head>
+<body>
+
+	<table>
+		<tr>
+		   <th> Email </th>
+		   <td> {{ user_query.email }} </td>
+		</tr>
+		<tr>
+		   <th> User Name </th>
+		   <td> {{ user_query.user_name }} </td>
+		</tr>		
+	</table>
+
+	<button onclick="alert('Functionality not working')">Deactivate Account</button>
+	<button><a href="/{{user}}/export" style="text-decoration:none;">Export User Data (.csv)</a></button>
+
+</body>
+</html>

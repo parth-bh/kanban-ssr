@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Add New Card</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='new_card_details.css') }}"/>
+
+</head>
+<body>
+
+
+	<div class="user-details">
+		<h1>User: {{user}}</h1>
+	</div>
+
+	<div class="new-card-details-form">
+		<form action="/{{user}}/add_card" method="post">
+
+			List Name: 
+			<select id="box-list_name" name="list_name">
+				{% for list_name in user_list%}
+					{% if selected_list == list_name %}
+						<option selected>{{list_name}}</option>
+					{% else %}
+						<option>{{list_name}}</option>
+					{% endif %}
+				{% endfor %}
+			</select> 
+			
+			<input type="hidden" name="user_name" value="{{user}}">
+			<input type="hidden" name="selected_list" value="{{selected_list}}">
+			<br>
+			
+			Title:
+			<input type="text" id="box-title" name="title" placeholder="Title" required><br>
+			
+			Content: <br>
+			<textarea id="box-content" name="content" placeholder="Description" rows="4" cols="50"></textarea><br>
+			
+			Deadline:
+			<input type="date" id="box-deadline" name="deadline" required><br>
+			
+			Complete:
+			<input type="range" id="mark-complete-status" name="mark_as_complete" min="0" max="1" value="0"><br>
+			
+			<button type="submit" class="save-button" name="new_card" value="save">Save</button>
+			
+			<button type="button" class="cancel-button"><a href="/{{user}}" style="text-decoration: none;">Cancel</a></button>
+		
+		</form>
+	</div>
+</body>
+</html>

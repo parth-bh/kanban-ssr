@@ -1,0 +1,222 @@
+* {
+  box-sizing: border-box;
+  margin = 0;
+}
+
+header {
+	border: 15px outset;
+	margin: 0;
+	background-color: grey;
+	color : white;
+	padding: 50px;
+	border-color: lightgrey;
+}
+
+nav {
+	text-align: right;
+	list-style-type: none;
+	color: white;
+	float: right;
+	width: 50%;
+}
+
+nav li {
+	border-radius: 20%;
+	font-size: 25px;
+	display: inline-block;
+	padding: 20px;
+
+}
+
+nav li a {
+	color: white;
+	text-decoration: none;
+	padding: 5px;
+}
+
+nav li a:hover {
+  background-color: lightblue;
+}
+
+.header-buttons {
+	font-size: 25px;
+	border-radius: 20%;
+}
+a:hover{
+	color: darkgoldenrod;
+}
+
+main  {
+	padding: 5px;
+}
+
+
+.column {
+		float: left;
+
+	}
+
+.list {
+	  width: 25%;
+	  font-size: 10px;
+	}
+
+.list button{
+	font-size: 15px;
+	font-weight: 600;
+	color: #222;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	border-radius: 5px;
+}
+
+.selecting-list{
+	padding: 20px;
+	margin-top: 10px;
+	border-bottom: outset;
+	width: 80%;
+}
+
+.selected-list-button, .add-list-button {
+	width: 180px;
+	margin: 5px;
+	padding: 10px 20px;
+}
+
+
+.selected-list-button:hover, .add-list-button:hover {
+	background-color: lightgrey;
+}
+
+
+/* The popup form - hidden by default */
+.form-popup-add-list, .form-popup-delete-list, .form-popup-edit-list, .form-popup-delete-card{
+  display: none;
+  position: fixed;
+  bottom: 50%;
+  left: 50%;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+  background-color: grey;
+}
+
+
+
+/* Add styles to the form container */
+.form-add-list, .form-delete-list, .form-edit-list {
+  width: 300px;
+  padding: 10px;
+  background-color: white;
+}
+
+.button{
+	padding: 10px;
+	cursor: pointer;
+}
+
+.button:hover, .button:focus{
+	color: darkgoldenrod;
+	background-color: lightgrey;
+}
+
+.cards {
+	  width: 75%;
+	}
+
+.delete-edit-list-column {
+	float: right;
+	width: 30%;
+	padding: 10px 5px;
+}
+
+.delete-button, .edit-button {
+	background-color: pink;
+	color : black;
+	round: 20%;
+}
+
+.data {
+	width: 90%;
+	font-size: 17px;
+	line-height: 2;
+	text-align: left;
+	border-bottom-right-radius: 10%;
+}
+
+.edit_style_icon{
+	style="font-size:24px;
+}
+
+.all-card-details {
+	float: left;
+	width: 90%;
+	padding: 5px;
+	border: 5px;
+	border-style: inset;
+
+}
+.progress-card-details, .completed-card-details, .not-completed-card-details {
+	border: groove;
+	width: 90%;
+	font-size: 17px;
+	line-height: 1.5;
+	text-align: left;
+	border-bottom-right-radius: 10%;
+	margin: 10px;
+	background-color: lightgrey;
+	padding: 5px;
+}
+
+
+#cards-status {
+	margin-left: 5px;
+	padding: 10px;
+	font-family: sans-serif;
+	text-decoration: underline;
+	color: purple;
+}
+
+
+
+.edit-card-button {
+	border: none;
+	padding: none;
+	cursor: pointer;
+	background-color: lightgrey;
+}
+
+
+.delete-card{
+	float: right;
+}
+
+
+.delete-card-button {
+	border: none;
+	padding: none;
+	cursor: pointer;
+	background-color: lightgrey;
+}
+
+
+.edit-card-button:hover, .delete-card-button:hover {
+	background-color: white;
+}
+
+.add-card-button {
+	border: groove;
+	width: 90%;
+	font-size: 17px;
+	line-height: 2;
+	text-align: left;
+	border-bottom-right-radius: 40%;
+	margin: 10px;
+	background-color: lightgrey;
+	cursor: pointer;
+}
+
+
+.add-card-button:hover {
+	background-color: darkgray;
+}

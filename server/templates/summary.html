@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Summary</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='summary.css') }}"/>
+
+</head>
+<body>
+<header>
+
+	<div class="heading">
+
+		<button type="button" class="logout_button"><a href="/logout" style="text-decoration:none;">LogOut</a></button>
+		<button type="button" class="user_page_button"><a href="/{{user}}" style="text-decoration:none;">User Page</a></button>
+		
+		<h1 id="user-heading">User : {{user}}</h1>
+		<br>
+		<h3 id="list_summary">Number of Lists : {{n_list}}</h3> 
+		<h3 id="list_summary">Number of Tasks : {{n_task}}</h3>
+		<h3 id="list_summary">Number of List with 0 Tasks : {{empty_task_n_list}}</h3>
+
+	</div>
+
+</header>
+
+<main>
+	{% if no_data %}
+
+		{% if user_list %}
+
+		<!-- if this condition satisfy, that means there is a list available but maybe no task in it.
+			so pass this condtion -->
+
+		{% else %}
+		
+		<h2 style="text-align:center;">There is no task created yet. Please use this Application & Create some task.</h2>
+		
+
+		{% endif %}
+
+	{% else %}
+	
+		<div class="overall_data_summary">
+			
+
+			<img class="overall_list_details" src="{{ url_for('static', filename='/img/Including_All_List.png') }}">
+			
+			<br><br>
+			<h2 style="text-align:left;color: grey;"><li>In last 7 days, how many task be created & completed in each day ?</li></h2>
+
+			<img class="overall_list_details" src="{{ url_for('static', filename='/img/date_vs_task_line_graph.png') }}">
+
+			<img class="overall_list_details" src="{{ url_for('static', filename='/img/completed_task_vs_date_graph.png') }}">
+	
+		</div>
+
+		<br>
+
+<!-- if the list have task, then plot the horizontal bar graph, used the matplotlib in summary_controllers.py, and plot the bar graph and save the file with their similar to the list name, and here i call the images -->
+
+		<div class="list_wise_summary">	
+	
+			<h2 style="text-align: center;"> List Wise Summary </h2>
+			{% for list_name_iter in user_list_non_empty %}
+	
+				<img class="completion_status_each_list" src="{{ url_for('static', filename='/img/'+list_name_iter) }}" width="40%" height="100%">
+	
+			{% endfor %}
+	
+		</div>
+
+	{% endif %}
+
+
+<!-- if the list have no task, then this is the block to show summary of that list name -->
+
+	
+	{% if empty_task_list_name %}
+		<div class="empty_list_summary">
+
+			<h2 style="text-align: center; line-height: 3;"> List with 0 task </h2>
+
+			{% for iter_name in empty_task_list_name %}
+				<li> {{iter_name}}: 0/0 Completed</li>
+			{% endfor %}
+		</div>
+	{% endif %}
+
+</main>
+</body>
+</html>

@@ -1,0 +1,5 @@
+,id,user_name,list_id,title,content,deadline,mark_as_complete,start_date,completion_date,list_name,completion_status
+0,1,pb17,1,project1,content,2022-09-29,True,2022-09-29,2022-09-29,list1,Completed
+1,2,pb17,1,project2,content2,2022-09-27,True,2022-09-29,2022-09-29,list1,Not-Completed
+2,4,pb17,1,project4,content4,2022-10-01,False,2022-09-29,,list1,In-Progress
+3,5,pb17,1,abc ,fghsbj c,2022-09-29,True,2022-09-29,2022-09-29,list1,Completed

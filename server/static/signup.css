@@ -1,0 +1,70 @@
+body {
+	margin: 25px;
+	background-color: #088F8F;
+}
+
+.signup-heading {
+	text-align: center;
+	font-family: Monospace;
+}
+
+main {
+	border: 5px groove;
+	border-color: white;
+	padding: 20px;
+	border-radius: 10%;
+	line-height: 1.2;
+	width: 30%;
+	text-align: center;
+	margin-left: 35%;
+	float: center;
+	background-color: white;
+	padding-bottom: 50px;
+}
+
+
+.button{
+	cursor: pointer;
+	padding: 10px;
+}
+
+
+.register-button:hover {
+	background-color: lightblue;
+}
+
+.register-button {
+	border-radius: 20%;
+	background-color: lightgreen;
+	width: 100px;
+}
+
+
+#break-line {
+	line-height: 0;
+	font-size: 14px;
+	line-height: 0;
+}
+
+
+.message{
+	font-size: 16px;
+	color: darkmagenta;
+  font-family: "Times New Roman", Times, serif;
+	font-weight: bold;
+}
+
+
+.login-button {
+	margin: 10px;
+	border : 0px solid;
+	border-color: white;
+	background-color: white;
+	width: 250px;
+
+}
+
+.login-button:hover {
+	background-color: lightgrey;
+}
+
